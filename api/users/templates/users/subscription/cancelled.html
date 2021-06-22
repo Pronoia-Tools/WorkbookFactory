@@ -1,0 +1,13 @@
+{% extends 'users/base.html' %}
+
+{% load static %}
+
+{% block content_view %}
+    <h1>
+      You're payment was cancelled.
+    </h1>
+   <p>Your payment was cancelled, would you like to try again?</p>
+   <a href="{% url 'subscription_payment' %}">Try Again</a>
+{% endblock %}
+
+{% block subscribe %}{% endblock subscribe %}

@@ -1,0 +1,56 @@
+{% extends "users/base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "E-mail Addresses" %}{% endblock %}
+
+{% block content_view %}
+    <h1 class="page-title">{% trans "E-mail Addresses" %}</h1>
+
+    <p class="mb-4">{% trans 'The following e-mail addresses are associated with your account:' %}</p>
+
+    <div class="mb-4">
+      {% for email in user.all_emails %}
+        <div class="flex justify-between mb-4 last:mb-0">
+          <div>{{ email.email }}</div>
+            <div class="flex space-x-2 items-center">
+              {% if email.verified %}
+                <i class="fas fa-envelope-open"></i>
+              {% endif %}
+              {% if not email.verified %}
+                <i class="fas fa-envelope"></i>
+              {% endif %}
+              {% if not email.primary %}
+                <form class="inline" action="{% url 'email_primary' email.id %}" method="POST">
+                  {% csrf_token %}
+                  <button type="submit">
+                    <i class="fas fa-check-circle"></i>
+                  </button>
+                </form>
+              {% endif %}
+              {% if email.primary %}
+                <i class="fas fa-check-circle text-green-500"></i>
+              {% endif %}
+              {% if not email.primary %}
+                <form action="{% url 'email_delete' email.id %}" method='POST'>
+                  {% csrf_token %}
+                  <button type="submit">
+                    <i class="fas fa-times-circle"></i>
+                  </button>
+                </form>
+              {% endif %}
+            </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <hr class="mb-4 burder border-tfwarmgray-300">
+
+    <h3>{% trans "Add E-mail Address" %}</h3>
+
+    <form method="post" action="{% url 'email_add' %}">
+      {% include 'includes/forms/form_fields.html' %}
+      <button name="action_add" type="submit" class="button primary">{% trans "Add E-mail" %}</button>
+    </form>
+
+{% endblock %}

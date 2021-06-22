@@ -1,0 +1,18 @@
+{% extends 'users/base.html' %}
+
+{% load static %}
+
+{% block content_view %}
+    <h1>
+      Your all set!
+    </h1>
+    <div class="prose prose-lg text-white">
+      <p class="mb-4">You're all signed up. Now go fishing! You can start tracking as soon as you want and we've added over 90 flies to your <a href="{% url 'flies' %}">digital fly box</a> to get you started!</p>
+      <p class="mb-4">
+        <img src="https://media.giphy.com/media/KpmfW5TPcYzba/giphy.gif" alt="Go Learn with TellFly">
+      </p>
+    </div>
+    <p><a href="{% url 'dashboard' %}" class="button primary">My dashboard</a></p>
+{% endblock %}
+
+{% block subscribe %}{% endblock subscribe %}
