@@ -1,5 +1,5 @@
 from django import forms
-from users.models import Account, Address, Phone, Subscription
+from users.models import Account, Subscription
 from allauth.account.models import EmailAddress
 
 
@@ -13,19 +13,6 @@ class NameForm(forms.ModelForm):
     class Meta:
         model = Account
         fields = ['first_name', 'last_name']
-
-
-class AddressForm(forms.ModelForm):
-    class Meta:
-        model = Address
-        fields = ['address_one', 'address_two',
-                  'city', 'state', 'postal', 'mailing_address']
-
-
-class PhoneForm(forms.ModelForm):
-    class Meta:
-        model = Phone
-        fields = ['phone_type', 'phone', 'primary']
 
 
 class SubscriptionForm(forms.ModelForm):

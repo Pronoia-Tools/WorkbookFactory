@@ -7,7 +7,7 @@ from django.forms.utils import flatatt
 from django.utils.html import format_html, format_html_join, mark_safe
 from django.utils.translation import ugettext, ugettext_lazy as _
 
-from .models import Account, Phone, Address, Subscription
+from .models import Account, Subscription
 
 
 class ReadOnlyPasswordHashWidget(forms.Widget):
@@ -114,6 +114,4 @@ class AccountAdmin(UserAdmin):
 
 
 admin.site.register(Account, AccountAdmin)
-admin.site.register(Address)
-admin.site.register(Phone)
 admin.site.register(Subscription)

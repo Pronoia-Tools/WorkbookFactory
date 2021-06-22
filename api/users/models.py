@@ -43,12 +43,6 @@ class Account(AbstractBaseUser, Core, PermissionsMixin):
     def get_short_name(self):
         return self.first_name
 
-    @cached_property
-    def profile(self):
-        try:
-            return Profile.objects.get(owner=self)
-        except:
-            pass
 
     @cached_property
     def emails(self):
@@ -85,19 +79,6 @@ class Account(AbstractBaseUser, Core, PermissionsMixin):
         except:
             pass
 
-    @cached_property
-    def addresses(self):
-        try:
-            return Address.objects.filter(owner=self)
-        except:
-            pass
-
-    @cached_property
-    def phones(self):
-        try:
-            return Phone.objects.filter(owner=self)
-        except:
-            pass
 
 
 class Subscription(models.Model):
@@ -115,41 +96,3 @@ class Subscription(models.Model):
     def __str__(self):
         return self.owner.email
 
-
-class Address(Core):
-    address_one = models.CharField(max_length=255, null=True, blank=True)
-    address_two = models.CharField(max_length=255, null=True, blank=True)
-    city = models.CharField(max_length=100, null=True, blank=True)
-    state = models.CharField(max_length=20, null=True, blank=True)
-    postal = models.CharField(max_length=12, null=True, blank=True)
-    mailing_address = models.BooleanField(default=False)
-
-    class Meta:
-        verbose_name = "Address"
-        verbose_name_plural = "Addresses"
-
-    def __str__(self):
-        return self.address_one
-
-
-class Phone(Core):
-    PHONE_CHOICES = (
-        ('Office', 'Office'),
-        ('Home', 'Home'),
-        ('Mobile', 'Mobile'),
-        ('Fax', 'Fax'),
-    )
-
-    phone = models.CharField(
-        validators=[phone_validator], blank=True, max_length=16
-    )
-    phone_type = models.CharField(
-        choices=PHONE_CHOICES, blank=True, null=True, max_length=6)
-    primary = models.BooleanField(default=False)
-
-    class Meta:
-        verbose_name = "Phone"
-        verbose_name_plural = "Phones"
-
-    def __str__(self):
-        return self.phone

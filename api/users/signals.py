@@ -1,4 +1,3 @@
-from flies.models import StarterFly
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
 from allauth.account.signals import email_confirmed
