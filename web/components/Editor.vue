@@ -5,6 +5,7 @@
 <script>
 import { Editor, EditorContent } from '@tiptap/vue-2'
 import StarterKit from '@tiptap/starter-kit'
+import VueComponent from './QuestionWithAnswer'
 
 export default {
   components: {
@@ -38,7 +39,7 @@ export default {
   },
   mounted() {
     this.editor = new Editor({
-      extensions: [StarterKit],
+      extensions: [StarterKit, VueComponent],
       content: this.value,
       onUpdate: () => {
         this.$emit('input', this.editor.getHTML())
