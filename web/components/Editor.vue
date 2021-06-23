@@ -1,15 +1,38 @@
 <template>
-  <editor-content :editor="editor" />
+  <div>
+    <bubble-menu v-if="editor" :editor="editor">
+      <button
+        :class="{ 'is-active': editor.isActive('bold') }"
+        @click="editor.chain().focus().toggleBold().run()"
+      >
+        bold
+      </button>
+      <button
+        :class="{ 'is-active': editor.isActive('italic') }"
+        @click="editor.chain().focus().toggleItalic().run()"
+      >
+        italic
+      </button>
+      <button
+        :class="{ 'is-active': editor.isActive('strike') }"
+        @click="editor.chain().focus().toggleStrike().run()"
+      >
+        strike
+      </button>
+    </bubble-menu>
+    <editor-content :editor="editor" />
+  </div>
 </template>
 
 <script>
-import { Editor, EditorContent } from '@tiptap/vue-2'
+import { Editor, EditorContent, BubbleMenu } from '@tiptap/vue-2'
 import StarterKit from '@tiptap/starter-kit'
 import VueComponent from './QuestionWithAnswer'
 
 export default {
   components: {
     EditorContent,
+    BubbleMenu,
   },
   props: {
     value: {
@@ -48,3 +71,12 @@ export default {
   },
 }
 </script>
+
+<style lang="scss">
+/* Basic editor styles */
+.ProseMirror {
+  > * + * {
+    margin-top: 0.75em;
+  }
+}
+</style>

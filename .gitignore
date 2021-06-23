@@ -202,6 +202,7 @@ web/.idea
 
 # Service worker
 web/sw.*
+web/static/sw.*
 
 # macOS
 web/.DS_Store
