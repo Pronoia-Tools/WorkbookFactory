@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="editor">
     <bubble-menu v-if="editor" :editor="editor">
       <button
         :class="{ 'is-active': editor.isActive('bold') }"
@@ -28,6 +28,7 @@
 import { Editor, EditorContent, BubbleMenu } from '@tiptap/vue-2'
 import StarterKit from '@tiptap/starter-kit'
 import VueComponent from './QuestionWithAnswer'
+import TableOfContents from './TableOfContent'
 
 export default {
   components: {
@@ -62,7 +63,7 @@ export default {
   },
   mounted() {
     this.editor = new Editor({
-      extensions: [StarterKit, VueComponent],
+      extensions: [StarterKit, VueComponent, TableOfContents],
       content: this.value,
       onUpdate: () => {
         this.$emit('input', this.editor.getHTML())
