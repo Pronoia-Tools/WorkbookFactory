@@ -15,7 +15,9 @@
       </ul>
     </div>
     <div class="content-wrapper flex flex-row w-full">
-      <side-bar />
+      <draggable class="list-group" :list="preDefinedComponents">
+        <side-bar />
+      </draggable>
       <div class="h-screen w-4/5 pt-24 px-10">
         <editor v-model="content" class="h-full overflow-y-auto" />
       </div>
@@ -24,18 +26,26 @@
 </template>
 
 <script>
+import draggable from 'vuedraggable'
+
 export default {
+  components: {
+    draggable,
+  },
   data() {
     return {
-      content: `<p>
-          This is still the text editor you’re used to, but enriched with node views.
-        </p>
-        <vue-component>
-          <p>This is editable.</p>
-        </vue-component>
-        <p>
-          Did you see that? That’s a Vue component. We are really living in the future.
-      </p>`,
+      preDefinedComponents: [],
+      content: `<toc></toc>
+        <h2>1 heading</h2>
+        <p>paragraph</p>
+        <h3>1.1 heading</h3>
+        <p>paragraph</p>
+        <h3>1.2 heading</h3>
+        <p>paragraph</p>
+        <h2>2 heading</h2>
+        <p>paragraph</p>
+        <h3>2.1 heading</h3>
+        <p>paragraph</p>`,
     }
   },
 }
