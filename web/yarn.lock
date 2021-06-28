@@ -1991,6 +1991,15 @@
     "@tiptap/extension-strike" "^2.0.0-beta.16"
     "@tiptap/extension-text" "^2.0.0-beta.12"
 
+"@tiptap/suggestion@^2.0.0-beta.59":
+  version "2.0.0-beta.59"
+  resolved "https://registry.yarnpkg.com/@tiptap/suggestion/-/suggestion-2.0.0-beta.59.tgz#2247499262fb841271947fa2cc485cd0b13ed245"
+  integrity sha512-CHdrQ7NEsDs6u5A4lA2sgZSzkBTrhsKJlQlUWFS9PoZiZZcqcYTe9+rU05X+xoxEXQgyOOP5ldOeZ+aQyaTFcA==
+  dependencies:
+    prosemirror-model "^1.14.2"
+    prosemirror-state "^1.3.4"
+    prosemirror-view "^1.18.8"
+
 "@tiptap/vue-2@^2.0.0-beta.38":
   version "2.0.0-beta.38"
   resolved "https://registry.yarnpkg.com/@tiptap/vue-2/-/vue-2-2.0.0-beta.38.tgz#de94bba4174292e77b126cfad25c77eb429bd6ad"

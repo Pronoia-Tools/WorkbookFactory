@@ -1,14 +1,6 @@
 <template>
   <div
-    class="
-      left-side-bar
-      bg-white
-      border-r border-gray-400
-      h-screen
-      w-1/5
-      px-2
-      pt-24
-    "
+    class="left-side-bar bg-white border-r border-gray-400 h-screen px-2 pt-24"
   >
     <div class="py-8 pl-4 border border-gray-400 mb-10">
       <p>Cover Title</p>

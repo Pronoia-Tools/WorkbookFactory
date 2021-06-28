@@ -15,7 +15,7 @@
       </ul>
     </div>
     <div class="content-wrapper flex flex-row w-full">
-      <draggable class="list-group" :list="preDefinedComponents">
+      <draggable class="list-group w-1/5" :list="preDefinedComponents">
         <side-bar />
       </draggable>
       <div class="h-screen w-4/5 pt-24 px-10">
