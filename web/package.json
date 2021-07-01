@@ -23,7 +23,9 @@
     }
   },
   "dependencies": {
+    "@chakra-ui/nuxt": "^0.3.3",
     "@nuxtjs/axios": "^5.13.1",
+    "@nuxtjs/emotion": "^0.1.0",
     "@nuxtjs/pwa": "^3.3.5",
     "@tiptap/extension-bubble-menu": "^2.0.0-beta.24",
     "@tiptap/extension-heading": "^2.0.0-beta.14",
@@ -31,8 +33,12 @@
     "@tiptap/suggestion": "^2.0.0-beta.59",
     "@tiptap/vue-2": "^2.0.0-beta.38",
     "core-js": "^3.9.1",
+    "js-cookie": "^2.2.1",
     "nuxt": "^2.15.3",
-    "vuedraggable": "^2.24.3"
+    "vue-router": "^3.5.2",
+    "vuedraggable": "^2.24.3",
+    "vuelidate": "^0.7.6",
+    "vuex-persistedstate": "^4.0.0-beta.3"
   },
   "devDependencies": {
     "@commitlint/cli": "^12.0.1",

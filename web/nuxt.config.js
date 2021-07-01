@@ -19,7 +19,7 @@ export default {
   },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: [{ src: '~/plugins/persistedState.js' }],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -41,10 +41,32 @@ export default {
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
     '@nuxtjs/style-resources',
+    // https://vue.chakra-ui.com/with-nuxt
+    '@chakra-ui/nuxt',
+    '@nuxtjs/emotion',
   ],
+  /**
+   * Add extend the plugin options under the `chakra` key.
+   **/
+  chakra: {
+    extendTheme: {
+      colors: {
+        brand: {
+          /* ... */
+        },
+      },
+    },
+  },
+  publicRuntimeConfig: {
+    axios: {
+      baseURL: 'https://workbookfactory-api.herokuapp.com',
+    },
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
+  axios: {
+    baseURL: 'https://workbookfactory-api.herokuapp.com',
+  },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
