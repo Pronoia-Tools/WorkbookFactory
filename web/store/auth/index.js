@@ -1,4 +1,4 @@
-// import * as Cookies from 'js-cookie'
+import Cookies from 'js-cookie'
 import { jwtDecrypt } from '../../shared/jwt.js'
 
 const state = () => ({
@@ -6,7 +6,6 @@ const state = () => ({
     token: '',
     refreshToken: '',
     tokenExp: '',
-    email: '',
   },
   isLoggedIn: false,
 })
@@ -19,7 +18,7 @@ const getters = {
     return state.authData
   },
   isTokenActive(state) {
-    console.log(state.authData)
+    console.log(1, state.authData)
   },
 }
 
@@ -47,28 +46,28 @@ const actions = {
 
 const mutations = {
   saveTokenData(state, response) {
-    document.cookie = 'access_token=' + response.access
-    document.cookie = 'refresh_token=' + response.refresh
+    Cookies.set('access_token', response.access)
+    Cookies.set('refresh_token', response.refresh)
 
     const jwtDecodedValue = jwtDecrypt(response.access)
     const newTokenData = {
       token: response.access,
       refreshToken: response.refresh,
       tokenExp: jwtDecodedValue.exp,
-      email: jwtDecodedValue.email,
     }
 
     state.authData = newTokenData
   },
 
   setLoginStatus(state, value) {
-    console.log('🚀 ~ file: index.js ~ line 64 ~ setLoginStatus ~ state', state)
     state.isLoggedIn = value
   },
 
   removeTokenData() {
-    document.cookie = 'access_token' + '=; Max-Age=0'
-    document.cookie = 'refresh_token' + '=; Max-Age=0'
+    // document.cookie = 'access_token' + '=; Max-Age=0'
+    // document.cookie = 'refresh_token' + '=; Max-Age=0'
+    Cookies.remove('access_token')
+    Cookies.remove('refresh_token')
   },
 }
 

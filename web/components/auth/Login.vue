@@ -238,9 +238,6 @@ export default {
         this.$router.push('/login')
       }
     },
-    handleSubmit() {
-      alert('Ok !')
-    },
   },
 }
 </script>
