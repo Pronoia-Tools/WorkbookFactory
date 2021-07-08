@@ -15,6 +15,9 @@
         </li>
         <li>Editor</li>
         <li>
+          <router-link to="/students" class="nav-link">Students</router-link>
+        </li>
+        <li>
           <router-link to="/login" class="nav-link">Login</router-link>
         </li>
         <li @click="logout()">
