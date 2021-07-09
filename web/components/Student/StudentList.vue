@@ -26,9 +26,15 @@
             <Td>{{ item.amount }}</Td>
             <Td>
               <c-button>
-                <router-link to="/student-details" class="nav-link">
+                <nuxt-link
+                  :to="{
+                    name: 'student-id',
+                    params: { id: item.id },
+                  }"
+                  class="nav-link"
+                >
                   Details
-                </router-link>
+                </nuxt-link>
               </c-button>
             </Td>
           </Tr>
@@ -234,28 +240,9 @@ export default {
           workBook: 'Yesterday',
           amount: '129',
         },
-        {
-          id: 21,
-          name: 'mikey',
-          email: 'mraky09@just.engineer',
-          date: '06/02/2020',
-          address: '96B Dinh Cong, Hoang Mai',
-          workBook: 'Yesterday',
-          amount: '129',
-        },
-        {
-          id: 22,
-          name: 'quiet',
-          email: 'mraky09@just.engineer',
-          date: '06/02/2020',
-          address: '96B Dinh Cong, Hoang Mai',
-          workBook: 'Yesterday',
-          amount: '129',
-        },
       ],
       currentPage: 1,
-      itemsPerPage: 3,
-      total: 20,
+      itemsPerPage: 1,
     }
   },
   computed: {

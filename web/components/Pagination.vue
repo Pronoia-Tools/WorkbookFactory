@@ -1,6 +1,6 @@
 <template>
-  <c-flex justify="space-between">
-    <c-list>
+  <c-flex justify="space-between" align="center">
+    <c-list mx="auto">
       <c-flex align="center">
         <c-list-item v-if="hasPrev()" pr="6">
           <a href="#" class="nav-link" @click.prevent="changePage(prevPage)">
@@ -49,7 +49,7 @@
 
         <c-list-item v-if="hasFirst()" pr="6">...</c-list-item>
 
-        <c-list-item v-for="(page, index) in pages" :key="index" pr="6">
+        <c-list-item v-for="(page, index) in pages" :key="index" pr="4" w="40%">
           <a href="#" @click.prevent="changePage(page)">
             <c-flex
               :class="{
@@ -68,7 +68,7 @@
           </a>
         </c-list-item>
 
-        <c-list-item v-if="hasLast()" pr="6">">...</c-list-item>
+        <c-list-item v-if="hasLast()" pr="6">...</c-list-item>
 
         <c-list-item v-if="hasLast()" pr="6">
           <a href="#" @click.prevent="changePage(totalPages)">
@@ -171,7 +171,7 @@ export default {
     },
     pageRange: {
       type: Number,
-      default: 9,
+      default: 5,
     },
     textBeforeInput: {
       type: String,
@@ -198,18 +198,20 @@ export default {
       return pages
     },
     rangeStart() {
-      // const start = this.currentPage - this.pageRange
-
-      return this.currentPage - this.pageRange > 0
-        ? this.currentPage - this.pageRange
-        : 1
+      if (this.currentPage > this.totalPages - this.pageRange) {
+        return this.totalPages - this.pageRange - 1
+      } else {
+        return this.currentPage - this.pageRange >= 1 ? this.currentPage - 2 : 1
+      }
     },
     rangeEnd() {
-      // const end = this.currentPage + this.pageRange
-
-      return this.currentPage + this.pageRange < this.totalPages
-        ? this.currentPage + this.pageRange
-        : this.totalPages
+      if (this.currentPage <= this.pageRange) {
+        return this.pageRange + 2
+      } else {
+        return this.currentPage > this.totalPages - this.pageRange
+          ? this.totalPages
+          : this.currentPage + 2
+      }
     },
     totalPages() {
       return Math.ceil(this.total / this.perPage)
@@ -229,16 +231,12 @@ export default {
       return this.rangeEnd < this.totalPages
     },
     hasPrev() {
-      return this.currentPage > 1
+      return this.currentPage >= 1
     },
     hasNext() {
-      return this.currentPage < this.totalPages
+      return this.currentPage <= this.totalPages
     },
     changePage(page) {
-      console.log(
-        '🚀 ~ file: Pagination.vue ~ line 236 ~ changePage ~ page',
-        page
-      )
       if (page > 0 && page <= this.totalPages) {
         this.$emit('page-changed', page)
       }

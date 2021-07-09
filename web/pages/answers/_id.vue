@@ -1,10 +1,13 @@
 <template>
-  <student-list />
+  <student-answers />
 </template>
 
 <script>
 export default {
   layout: 'layout',
+  data() {
+    return {}
+  },
 }
 </script>
 
