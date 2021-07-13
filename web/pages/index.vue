@@ -1,51 +1,26 @@
 <template>
-  <div class="container">
-    <div class="header fixed w-full bg-white border-b border-gray-400">
-      <ul class="flex flex-row items-center">
-        <li>
-          <img
-            src="../static/Sammy.svg"
-            alt="logo-icon"
-            srcset="../static/Sammy.svg"
-            class="w-10 h-10"
-          />
-        </li>
-        <li>
-          <router-link to="/" class="nav-link">Home</router-link>
-        </li>
-        <li>Editor</li>
-        <li>
-          <router-link to="/students" class="nav-link">Students</router-link>
-        </li>
-        <li>
-          <router-link to="/login" class="nav-link">Login</router-link>
-        </li>
-        <li @click="logout()">
-          <router-link to="/login" class="nav-link">Logout</router-link>
-        </li>
-      </ul>
-      <router-view></router-view>
-    </div>
-    <div class="content-wrapper flex flex-row w-full">
-      <draggable class="list-group w-1/5" :list="preDefinedComponents">
-        <side-bar />
-      </draggable>
-      <div class="h-screen w-4/5 pt-24 px-10">
-        <editor v-model="content" class="h-full overflow-y-auto" />
-      </div>
-    </div>
-  </div>
+  <c-flex direction="row" w="100%" h="95vh">
+    <c-box w="20%">
+      <side-bar>
+        <editor-sidebar />
+      </side-bar>
+    </c-box>
+    <c-box w="80%" px="10" py="10">
+      <editor v-model="content" class="h-full overflow-y-auto" />
+    </c-box>
+  </c-flex>
 </template>
 
 <script>
-import draggable from 'vuedraggable'
 import { mapActions } from 'vuex'
+import SideBar from '../components/SideBar.vue'
+import EditorSidebar from '../components/SideBar/EditorSidebar.vue'
 
 export default {
   components: {
-    draggable,
+    'side-bar': SideBar,
+    'editor-sidebar': EditorSidebar,
   },
-  middleware: 'auth',
   data() {
     return {
       preDefinedComponents: [],
@@ -66,19 +41,10 @@ export default {
     ...mapActions('auth', {
       actionLogout: 'logout',
     }),
-    async logout() {
-      await this.actionLogout()
+    logout() {
+      this.actionLogout()
+      this.$router.go('/login')
     },
   },
 }
 </script>
-
-<style>
-.header ul > li {
-  @apply px-8 py-2;
-}
-
-.container {
-  @apply max-w-none max-h-screen flex flex-row flex-wrap mx-auto;
-}
-</style>

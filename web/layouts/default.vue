@@ -1,6 +1,7 @@
 <template>
   <CThemeProvider>
     <CReset />
+    <Header />
     <Nuxt />
   </CThemeProvider>
 </template>
@@ -14,6 +15,7 @@ export default {
     CThemeProvider,
     CReset,
   },
+  middleware: 'auth',
 }
 </script>
 
@@ -64,5 +66,9 @@ html {
 .button--grey:hover {
   color: #fff;
   background-color: #35495e;
+}
+
+div > li {
+  @apply px-8 py-2;
 }
 </style>

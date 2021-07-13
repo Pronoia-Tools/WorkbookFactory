@@ -116,12 +116,12 @@
           </div>
 
           <div class="text-sm">
-            <a
-              href="#"
+            <nuxt-link
+              to="/register"
               class="font-medium text-indigo-600 hover:text-indigo-500"
             >
-              Forgot your password?
-            </a>
+              Don't have account?
+            </nuxt-link>
           </div>
         </div>
 

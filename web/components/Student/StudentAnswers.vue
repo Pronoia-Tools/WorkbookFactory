@@ -7,7 +7,7 @@
     <c-box
       class="scrollbar"
       border="1px"
-      border-color="gray.400"
+      border-color="gray.200"
       height="750px"
       mb="10"
       p="5"

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <c-box>
     <c-flex direction="row" mb="60px">
       <c-box width="40%">
         <c-image
@@ -41,13 +41,8 @@
       </c-box>
     </c-flex>
 
-    <c-box
-      class="hidden-scrollbar"
-      overflow-y="auto"
-      max-height="300px"
-      width="100%"
-    >
-      <Table size="lg">
+    <c-flex class="hidden-scrollbar" height="300px" mb="10">
+      <Table size="lg" width="100%">
         <Thead fixed>
           <Tr>
             <Th width="10%">ID</Th>
@@ -79,7 +74,8 @@
           </Tr>
         </Tbody>
       </Table>
-    </c-box>
+    </c-flex>
+
     <pagination
       :current-page="currentPage"
       :total="items.length"
@@ -88,7 +84,7 @@
       text-after-input="Go"
       @page-changed="currentPage = $event"
     />
-  </div>
+  </c-box>
 </template>
 
 <script>
