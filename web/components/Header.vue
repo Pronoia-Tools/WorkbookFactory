@@ -1,36 +1,61 @@
 <template>
-  <c-list
-    w="100%"
-    h="5vh"
-    border-bottom="1px"
-    border-color="gray.100"
-    box-shadow="0 4px 12px 0 rgba(0, 0, 0, 0.05)"
-    py="auto"
-  >
-    <c-flex h="100%" direction="row" align="center" justify="space-between">
-      <c-flex align="center">
-        <c-list-item>
-          <nuxt-link to="/" class="nav-link">
-            <img
-              src="../static/Sammy.svg"
-              alt="logo-icon"
-              srcset="../static/Sammy.svg"
-              class="w-10 h-10"
-            />
-          </nuxt-link>
-        </c-list-item>
-        <c-list-item>
-          <nuxt-link to="/" class="nav-link">Editor</nuxt-link>
-        </c-list-item>
-        <c-list-item>
-          <nuxt-link to="/students" class="nav-link">Students</nuxt-link>
-        </c-list-item>
-      </c-flex>
-      <c-list-item>
-        <c-box cursor="pointer" @click="logout()">
-          <span>Logout</span>
+  <c-box box-shadow="0 1px 3px 0 rgb(0 0 0 / 10%), 0 1px 2px 0 rgb(0 0 0 / 6%)">
+    <c-flex align="center" h="72px" px="15px">
+      <c-link w="130px" href="">
+        <c-image src="" alt="Image Logo" />
+      </c-link>
+      <c-box flex="1" as="nav" pl="10">
+        <c-box display="flex" as="ul">
+          <c-box as="li" px="4">
+            <nuxt-link to=""> Your Library </nuxt-link>
+          </c-box>
+          <c-box as="li" px="4">
+            <nuxt-link to="/author/workbooks"> Workbook Factory</nuxt-link>
+          </c-box>
+          <c-box as="li" px="4">
+            <nuxt-link to=""> Coach's Dashboard</nuxt-link>
+          </c-box>
+          <c-box as="li" px="4">
+            <nuxt-link to=""> Marketplace</nuxt-link>
+          </c-box>
         </c-box>
-      </c-list-item>
+      </c-box>
+
+      <c-flex>
+        <c-box display="flex" as="ul">
+          <c-box as="li" px="2">
+            <c-menu>
+              <c-menu-button
+                _hover="{backgroundColor:transparent }"
+                _active="{backgroundColor:transparent}"
+                _focus="{outline:none}"
+                background-color="transparent"
+                outline="none"
+                px="4"
+                py="2"
+              >
+                <c-image
+                  rounded="full"
+                  h="40px"
+                  w="40px"
+                  src="https://bit.ly/chakra-jonathan-bakebwa"
+                  alt="Đặng Kiên"
+                />
+                <c-text font-size="sm" ml="2">Đặng Kiên</c-text>
+                <c-icon name="chevron-down" />
+              </c-menu-button>
+              <c-menu-list>
+                <c-menu-divider />
+                <c-menu-item>
+                  <c-box cursor="pointer" @click="logout()">
+                    <span>Logout</span>
+                  </c-box>
+                </c-menu-item>
+              </c-menu-list>
+            </c-menu>
+          </c-box>
+        </c-box>
+      </c-flex>
     </c-flex>
-  </c-list>
+  </c-box>
 </template>
