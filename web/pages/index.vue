@@ -12,7 +12,6 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
 import SideBar from '../components/SideBar.vue'
 import EditorSidebar from '../components/SideBar/EditorSidebar.vue'
 
@@ -36,15 +35,6 @@ export default {
         <h3>2.1 heading</h3>
         <p>paragraph</p>`,
     }
-  },
-  methods: {
-    ...mapActions('auth', {
-      actionLogout: 'logout',
-    }),
-    logout() {
-      this.actionLogout()
-      this.$router.go('/login')
-    },
   },
 }
 </script>

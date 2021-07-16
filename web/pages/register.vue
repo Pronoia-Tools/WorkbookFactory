@@ -287,12 +287,13 @@
 </template>
 
 <script>
-import axios from 'axios'
+// import axios from 'axios'
 import { validationMixin } from 'vuelidate'
 import { required, email, minLength } from 'vuelidate/lib/validators'
 
 export default {
   mixins: [validationMixin],
+  layout: 'login',
   data() {
     return {
       userName: '',
@@ -329,7 +330,7 @@ export default {
       //   'My-Custom-Header': 'foobar',
       // }
 
-      const response = await axios
+      const response = await this.$axios
         .post('/api/v1/accounts', {
           username: this.userName,
           first_name: this.firstName,
@@ -341,7 +342,7 @@ export default {
         })
         .catch((error) => console.log(error))
 
-      console.log('status code', response.config.data)
+      console.log('status code', response)
     },
   },
 }

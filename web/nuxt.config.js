@@ -19,7 +19,10 @@ export default {
   },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [{ src: '~/plugins/vuex-persist.js', ssr: false }],
+  plugins: [
+    { src: '~/plugins/vuex-persist.js', ssr: false },
+    { src: '~/plugins/axios.js', ssr: true },
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,

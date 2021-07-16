@@ -40,7 +40,7 @@
                 border border-gray-300
                 placeholder-gray-500
                 text-gray-900
-                rounded-t-md
+                rounded-md
                 focus:outline-none
                 focus:ring-indigo-500
                 focus:border-indigo-500
@@ -76,7 +76,7 @@
                 border border-gray-300
                 placeholder-gray-500
                 text-gray-900
-                rounded-b-md
+                rounded-md
                 focus:outline-none
                 focus:ring-indigo-500
                 focus:border-indigo-500

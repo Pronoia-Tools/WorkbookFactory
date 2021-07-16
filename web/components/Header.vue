@@ -23,7 +23,7 @@
           <nuxt-link to="/" class="nav-link">Editor</nuxt-link>
         </c-list-item>
         <c-list-item>
-          <nuxt-link to="/students" class="nav-link">Students</nuxt-link>
+          <nuxt-link to="/clients" class="nav-link">Clients</nuxt-link>
         </c-list-item>
       </c-flex>
       <c-list-item>
@@ -34,3 +34,25 @@
     </c-flex>
   </c-list>
 </template>
+
+<script>
+import { mapActions } from 'vuex'
+
+export default {
+  methods: {
+    ...mapActions('auth', {
+      actionLogout: 'logout',
+    }),
+    logout() {
+      this.actionLogout()
+      this.$router.go('/login')
+    },
+  },
+}
+</script>
+
+<style scoped>
+div > li {
+  @apply px-8 py-2;
+}
+</style>

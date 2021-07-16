@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <login />
-  </div>
+  <login />
 </template>
 
 <script>
@@ -11,5 +9,6 @@ export default {
   components: {
     login: Login,
   },
+  layout: 'login',
 }
 </script>

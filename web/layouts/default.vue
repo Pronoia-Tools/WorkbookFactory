@@ -67,8 +67,4 @@ html {
   color: #fff;
   background-color: #35495e;
 }
-
-div > li {
-  @apply px-8 py-2;
-}
 </style>
