@@ -1,64 +1,58 @@
 <template>
   <c-box>
-    <c-flex direction="row" mb="60px">
+    <c-flex direction="row" mb="60px" align="center">
       <c-box width="40%">
-        <c-image
-          src="https://st2.depositphotos.com/1104517/11967/v/950/depositphotos_119675554-stock-illustration-male-avatar-profile-picture-vector.jpg"
-          size="400px"
-          object-fit="cover"
+        <img
+          src="../../static/default.png"
+          src-set="../../static/default.png"
+          class="w-80 h-80 bg-cover bg-no-repeat bg-center rounded-full mx-auto"
           alt="avatar"
-          mx="auto"
-        ></c-image>
+        />
       </c-box>
 
-      <c-box width="60%" pt="20" px="10">
+      <c-box width="60%" px="10">
         <c-list>
-          <c-list-item
-            ><c-box
-              ><strong>Name:&nbsp;</strong>{{ studentData.name }}</c-box
-            ></c-list-item
-          >
-          <c-list-item
-            ><c-box
-              ><strong>Date of Birth:&nbsp;</strong
-              >{{ studentData.birth }}</c-box
-            ></c-list-item
-          >
-          <c-list-item
-            ><c-box><strong>Email:&nbsp;</strong>{{ studentData.email }}</c-box>
+          <c-list-item>
+            <c-box> <strong>Name:&nbsp;</strong>{{ clientData.name }} </c-box>
           </c-list-item>
-          <c-list-item
-            ><c-box
-              ><strong>Address:&nbsp;</strong>{{ studentData.address }}</c-box
-            ></c-list-item
-          >
-          <c-list-item
-            ><c-box
-              ><strong>Genre:&nbsp;</strong>{{ studentData.genre }}</c-box
-            ></c-list-item
-          >
+          <c-list-item>
+            <c-box>
+              <strong>Date of Birth:&nbsp;</strong>{{ clientData.birth }}
+            </c-box>
+          </c-list-item>
+          <c-list-item>
+            <c-box> <strong>Email:&nbsp;</strong>{{ clientData.email }} </c-box>
+          </c-list-item>
+          <c-list-item>
+            <c-box>
+              <strong>Address:&nbsp;</strong>{{ clientData.address }}
+            </c-box>
+          </c-list-item>
+          <c-list-item>
+            <c-box> <strong>Genre:&nbsp;</strong>{{ clientData.genre }} </c-box>
+          </c-list-item>
         </c-list>
       </c-box>
     </c-flex>
 
     <c-flex class="hidden-scrollbar" height="300px" mb="10">
-      <Table size="lg" width="100%">
-        <Thead fixed>
-          <Tr>
-            <Th width="10%">ID</Th>
-            <Th width="30%">Book's name</Th>
-            <Th width="15%">Buy Date</Th>
-            <Th width="30%">Progress</Th>
-            <Th width="15%">Solution</Th>
-          </Tr>
-        </Thead>
-        <Tbody>
-          <Tr v-for="item in paginate" :key="item.id">
-            <Td>{{ item.id }}</Td>
-            <Td>{{ item.name }}</Td>
-            <Td>{{ item.date }}</Td>
-            <Td>{{ item.progress }}</Td>
-            <Td>
+      <c-box as="table" width="100%" border="1px" border-color="gray.200">
+        <c-box as="thead">
+          <c-box as="tr">
+            <c-box as="th" width="10%">ID</c-box>
+            <c-box as="th" width="30%">Book's name</c-box>
+            <c-box as="th" width="15%">Buy Date</c-box>
+            <c-box as="th" width="30%">Progress</c-box>
+            <c-box as="th" width="15%">Solution</c-box>
+          </c-box>
+        </c-box>
+        <c-box as="tbody">
+          <c-box v-for="item in paginate" :key="item.id" as="tr">
+            <c-box as="td">{{ item.id }}</c-box>
+            <c-box as="td">{{ item.name }}</c-box>
+            <c-box as="td">{{ item.date }}</c-box>
+            <c-box as="td">{{ item.progress }}</c-box>
+            <c-box as="td">
               <c-button>
                 <nuxt-link
                   :to="{
@@ -70,10 +64,10 @@
                   Go to answer
                 </nuxt-link>
               </c-button>
-            </Td>
-          </Tr>
-        </Tbody>
-      </Table>
+            </c-box>
+          </c-box>
+        </c-box>
+      </c-box>
     </c-flex>
 
     <pagination
@@ -90,7 +84,7 @@
 <script>
 export default {
   props: {
-    studentData: {
+    clientData: {
       type: Object,
       default() {},
     },

@@ -1,7 +1,7 @@
 <template>
   <c-flex justify="space-between" align="center">
-    <c-list mx="auto">
-      <c-flex align="center">
+    <c-list w="80%">
+      <c-flex align="center" justify="center">
         <c-list-item v-if="hasPrev()" pr="6">
           <a href="#" class="nav-link" @click.prevent="changePage(prevPage)">
             <c-flex
@@ -49,16 +49,16 @@
 
         <c-list-item v-if="hasFirst()" pr="6">...</c-list-item>
 
-        <c-list-item v-for="(page, index) in pages" :key="index" pr="4" w="40%">
+        <c-list-item v-for="(page, index) in pages" :key="index" pr="4">
           <a href="#" @click.prevent="changePage(page)">
             <c-flex
               :class="{
-                'bg-gradient-to-r from-blue-400 to-indigo-400':
+                'bg-gradient-to-r from-gray-400 to-indigo-400':
                   currentPage === page,
               }"
               justify="center"
               align="center"
-              :_hover="{ bg: 'gray.200' }"
+              rounded="full"
               transfrom="rotate-45"
               h="6"
               w="6"
@@ -117,7 +117,7 @@
       </c-flex>
     </c-list>
 
-    <c-flex align="center">
+    <c-flex w="20%" justify="flex-end" align="center">
       <c-box pr="2">
         <c-text color="gray.400" font-weight="600">
           {{ textBeforeInput }}
@@ -190,22 +190,30 @@ export default {
   computed: {
     pages() {
       const pages = []
+      if (this.totalPages === 1) {
+        return pages
+      }
 
       for (let i = this.rangeStart; i <= this.rangeEnd; i++) {
         pages.push(i)
       }
-
       return pages
     },
     rangeStart() {
-      if (this.currentPage > this.totalPages - this.pageRange) {
+      if (
+        this.currentPage > this.totalPages - this.pageRange &&
+        this.totalPages > this.pageRange
+      ) {
         return this.totalPages - this.pageRange - 1
       } else {
         return this.currentPage - this.pageRange >= 1 ? this.currentPage - 2 : 1
       }
     },
     rangeEnd() {
-      if (this.currentPage <= this.pageRange) {
+      if (
+        this.currentPage <= this.pageRange &&
+        this.totalPages > this.pageRange
+      ) {
         return this.pageRange + 2
       } else {
         return this.currentPage > this.totalPages - this.pageRange
@@ -225,16 +233,18 @@ export default {
   },
   methods: {
     hasFirst() {
-      return this.rangeStart !== 1
+      return this.pages.length !== 0 ? this.rangeStart !== 1 : null
     },
     hasLast() {
       return this.rangeEnd < this.totalPages
     },
     hasPrev() {
-      return this.currentPage >= 1
+      return this.pages.length !== 0 ? this.currentPage >= 1 : null
     },
     hasNext() {
-      return this.currentPage <= this.totalPages
+      return this.pages.length !== 0
+        ? this.currentPage <= this.totalPages
+        : null
     },
     changePage(page) {
       if (page > 0 && page <= this.totalPages) {

@@ -10,7 +10,7 @@
       justify="space-between"
       align="center"
     >
-      <c-text font-size="20px" cursor="default">Students</c-text>
+      <c-text font-size="20px" cursor="default">Clients</c-text>
       <svg
         aria-hidden="true"
         focusable="false"
@@ -31,7 +31,7 @@
     </c-flex>
     <c-list>
       <c-list-item px="8" py="4">
-        <c-box> Student List </c-box>
+        <c-box> Client Listing </c-box>
       </c-list-item>
     </c-list>
   </c-flex>

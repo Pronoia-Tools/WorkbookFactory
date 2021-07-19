@@ -59,3 +59,25 @@
     </c-flex>
   </c-box>
 </template>
+
+<script>
+import { mapActions } from 'vuex'
+
+export default {
+  methods: {
+    ...mapActions('auth', {
+      actionLogout: 'logout',
+    }),
+    logout() {
+      this.actionLogout()
+      this.$router.go('/login')
+    },
+  },
+}
+</script>
+
+<style scoped>
+div > li {
+  @apply px-8 py-2;
+}
+</style>

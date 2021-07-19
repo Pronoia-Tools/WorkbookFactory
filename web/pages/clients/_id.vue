@@ -2,21 +2,23 @@
   <c-flex direction="row" w="100%" h="95vh">
     <c-box w="20%">
       <side-bar>
-        <students-sidebar />
+        <clients-sidebar />
       </side-bar>
     </c-box>
     <c-box w="80%" px="10" py="10">
-      <student-details :student-data="item" />
+      <client-details :client-data="item" />
     </c-box>
   </c-flex>
 </template>
 
 <script>
-import StudentsSidebar from '../../components/SideBar/StudentsSidebar.vue'
+import ClientsSidebar from '../../components/SideBar/ClientsSidebar.vue'
+import ClientDetails from '../../components/Clients/ClientDetails.vue'
 
 export default {
   components: {
-    'students-sidebar': StudentsSidebar,
+    'clients-sidebar': ClientsSidebar,
+    'client-details': ClientDetails,
   },
   data() {
     return {
