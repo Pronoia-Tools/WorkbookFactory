@@ -10,12 +10,21 @@
             class="w-10 h-10"
           />
         </li>
-        <li>Home</li>
+        <li>
+          <router-link to="/" class="nav-link">Home</router-link>
+        </li>
         <li>Editor</li>
+        <li>
+          <router-link to="/login" class="nav-link">Login</router-link>
+        </li>
+        <li @click="logout()">
+          <router-link to="/login" class="nav-link">Logout</router-link>
+        </li>
       </ul>
+      <router-view></router-view>
     </div>
     <div class="content-wrapper flex flex-row w-full">
-      <draggable class="list-group" :list="preDefinedComponents">
+      <draggable class="list-group w-1/5" :list="preDefinedComponents">
         <side-bar />
       </draggable>
       <div class="h-screen w-4/5 pt-24 px-10">
@@ -27,11 +36,13 @@
 
 <script>
 import draggable from 'vuedraggable'
+import { mapActions } from 'vuex'
 
 export default {
   components: {
     draggable,
   },
+  middleware: 'auth',
   data() {
     return {
       preDefinedComponents: [],
@@ -47,6 +58,14 @@ export default {
         <h3>2.1 heading</h3>
         <p>paragraph</p>`,
     }
+  },
+  methods: {
+    ...mapActions('auth', {
+      actionLogout: 'logout',
+    }),
+    async logout() {
+      await this.actionLogout()
+    },
   },
 }
 </script>

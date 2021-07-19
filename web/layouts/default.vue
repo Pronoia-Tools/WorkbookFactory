@@ -1,8 +1,21 @@
 <template>
-  <div>
+  <CThemeProvider>
+    <CReset />
     <Nuxt />
-  </div>
+  </CThemeProvider>
 </template>
+
+<script>
+import { CThemeProvider, CReset } from '@chakra-ui/vue'
+
+export default {
+  name: 'DefaultLayout',
+  components: {
+    CThemeProvider,
+    CReset,
+  },
+}
+</script>
 
 <style>
 html {
