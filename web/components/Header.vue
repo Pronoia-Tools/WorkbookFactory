@@ -1,5 +1,8 @@
 <template>
-  <c-box box-shadow="0 1px 3px 0 rgb(0 0 0 / 10%), 0 1px 2px 0 rgb(0 0 0 / 6%)">
+  <c-box
+    background-color="#fff"
+    box-shadow="0 1px 3px 0 rgb(0 0 0 / 10%), 0 1px 2px 0 rgb(0 0 0 / 6%)"
+  >
     <c-flex align="center" h="72px" px="15px">
       <c-link w="130px" href="">
         <c-image src="" alt="Image Logo" />

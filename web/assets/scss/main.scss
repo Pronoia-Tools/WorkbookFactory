@@ -1,0 +1,23 @@
+body {
+  font-family: 'Roboto',
+    sans-serif;
+    background: #fafafa;
+}
+
+table {
+  padding: 0.75rem 0.5rem;
+
+  tbody {
+    td {
+      padding: 1rem 0.5rem;
+    }
+  }
+
+  thead {
+
+    th,
+    tr {
+      padding: 0.75rem 0.5rem;
+    }
+  }
+}
