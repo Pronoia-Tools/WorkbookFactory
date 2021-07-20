@@ -142,21 +142,55 @@
             </c-grid-item>
           </c-grid>
         </c-box>
+        <c-box py="16">
+          <c-heading as="h3" size="lg">More by "Danielle LaPorte"</c-heading>
+          <c-box align="center" flex-wrap="wrap" mx="-5">
+            <c-box py="10">
+              <swiper class="swiper" :options="swiperOption">
+                <swiper-slide w="25%" px="5" py="8">
+                  <img src="@/static/default.png" alt="img-workbooks" />
+                </swiper-slide>
+                <swiper-slide w="25%" px="5" py="8">
+                  <img src="@/static/default.png" alt="img-workbooks" />
+                </swiper-slide>
+                <swiper-slide w="25%" px="5" py="8">
+                  <img src="@/static/default.png" alt="img-workbooks" />
+                </swiper-slide>
+                <swiper-slide w="25%" px="5" py="8">
+                  <img src="@/static/default.png" alt="img-workbooks" />
+                </swiper-slide>
+              </swiper>
+            </c-box>
+          </c-box>
+        </c-box>
       </c-box>
     </c-box>
   </c-box>
 </template>
 
 <script>
+import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
+import 'swiper/components/pagination/pagination.min.css'
+import 'swiper/components/navigation/navigation.min.css'
+import SwiperCore, { Pagination, Navigation } from 'swiper/core'
+SwiperCore.use([Pagination, Navigation])
+console.log(Navigation)
 export default {
-  components: {},
+  components: {
+    Swiper,
+    SwiperSlide,
+  },
   data() {
     return {
-      workbooks: [],
+      swiperOption: {
+        slidesPerView: 4,
+        slidesPerGroup: 4,
+        spaceBetween: 50,
+        loop: true,
+        freeMode: true,
+        navigation: true,
+      },
     }
-  },
-  async fetch() {
-    this.workbooks = await this.$axios.$get('api/v1/workbooks')
   },
 }
 </script>

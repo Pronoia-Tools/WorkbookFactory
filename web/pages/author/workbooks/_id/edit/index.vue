@@ -1,5 +1,5 @@
 <template>
-  <c-flex direction="row" w="100%" h="95vh">
+  <c-flex direction="row" w="100%" min-h="95vh">
     <c-box w="20%">
       <side-bar> </side-bar>
     </c-box>
@@ -72,9 +72,12 @@
             </c-grid>
 
             <c-box mt="4">
-              <c-textarea placeholder="Description" text-size="sm">{{
-                workbook.front_matter
-              }}</c-textarea>
+              <c-textarea
+                placeholder="Description"
+                text-size="sm"
+                class="min-h-[200px]"
+                >{{ workbook.front_matter }}</c-textarea
+              >
             </c-box>
 
             <c-box my="10">

@@ -1,6 +1,6 @@
 <template>
   <c-box box-shadow="0 1px 3px 0 rgb(0 0 0 / 10%), 0 1px 2px 0 rgb(0 0 0 / 6%)">
-    <c-flex align="center" h="5vh" px="15px">
+    <c-flex align="center" h="60px" px="15px" background-color="white">
       <c-box w="40px" h="40px">
         <nuxt-link to="/">
           <c-image :src="require('@/static/Sammy.svg')" alt="Image Logo" />
