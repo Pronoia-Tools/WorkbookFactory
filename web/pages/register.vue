@@ -19,7 +19,7 @@
 
       <form class="mt-8 space-y-6" method="POST">
         <input type="hidden" name="remember" value="true" />
-        <div class="rounded-md shadow-sm">
+        <div class="rounded-md">
           <!-- user name -->
           <div class="mb-6">
             <label for="user_name" class="sr-only">User Name</label>
@@ -52,6 +52,11 @@
             />
             <div v-if="$v.user_name.$error" class="invalid-feedback">
               <span v-if="!$v.user_name.required">User name is required</span>
+            </div>
+            <div v-if="isError.username" class="invalid-feedback">
+              <span v-for="(error, index) in isError.username" :key="index">
+                {{ error }}
+              </span>
             </div>
           </div>
           <!-- first name -->
@@ -157,6 +162,11 @@
               <span v-if="!$v.email.required">Email is required</span>
               <span v-if="!$v.email.email">Email is invalid</span>
             </div>
+            <div v-if="isError.email" class="invalid-feedback">
+              <span v-for="(error, index) in isError.email" :key="index">
+                {{ error }}
+              </span>
+            </div>
           </div>
           <!-- password -->
           <div class="mb-6">
@@ -166,7 +176,7 @@
               v-model="password"
               name="password"
               type="password"
-              autocomplete="current-password"
+              autocomplete="off"
               required
               class="
                 appearance-none
@@ -191,9 +201,14 @@
             />
             <div v-if="$v.password.$error" class="invalid-feedback">
               <span v-if="!$v.password.required">Password is required</span>
-              <span v-if="!$v.password.minLength"
-                >Password must be at least 6 characters</span
-              >
+              <span v-if="!$v.password.minLength">
+                Password must be at least 8 characters
+              </span>
+            </div>
+            <div v-if="isError.password1" class="invalid-feedback">
+              <p v-for="(error, index) in isError.password1" :key="index">
+                {{ error }}
+              </p>
             </div>
           </div>
           <!-- confirm password -->
@@ -232,7 +247,7 @@
                 Confirm password is required
               </span>
               <span v-if="!$v.confirm_password.minLength">
-                Password must be at least 6 characters
+                Confirm password must be at least 8 characters
               </span>
             </div>
             <div
@@ -348,6 +363,7 @@ export default {
       confirm_password: '',
       isActive: false,
       isStaff: false,
+      isError: {},
     }
   },
 
@@ -366,50 +382,53 @@ export default {
       sameAsPassword: sameAs('password'),
     },
   },
-
+  created() {
+    return this.$v.$touch()
+  },
   methods: {
     async registerUser() {
       // stop here if form is invalid
       this.$v.$touch()
       if (this.$v.$invalid) {
-        return
+        return false
       }
 
-      // const headers = {
-      //   Authorization: `Bearer ${this.$store.state.auth.authData.token}`,
-      //   'My-Custom-Header': 'foobar',
-      // }
-
-      const response = await this.$axios
-        .$post('/api/rest-auth/registration/', {
-          username: this.user_name,
-          first_name: this.first_name,
-          last_name: this.last_name,
-          email: this.email,
-          password1: this.password,
-          password2: this.confirm_password,
-          is_active: this.isActive,
-          is_staff: this.isStaff,
-        })
-        .catch((error) => console.log('message', error.response))
-
-      if (response) {
-        this.$toast({
-          title: 'Success',
-          description: 'Your account registered.',
-          status: 'success',
-          duration: 2000,
-          position: 'top-right',
-        })
-        this.$router.go('/login')
-      } else {
-        this.$toast({
-          title: 'Failed',
-          description: 'Please recheck your email or password.',
-          status: 'error',
-          duration: 2000,
-          position: 'top-right',
-        })
+      try {
+        const response = await this.$axios.$post(
+          '/api/rest-auth/registration/',
+          {
+            username: this.user_name,
+            first_name: this.first_name,
+            last_name: this.last_name,
+            email: this.email,
+            password1: this.password,
+            password2: this.confirm_password,
+            is_active: this.isActive,
+            is_staff: this.isStaff,
+          }
+        )
+        if (response) {
+          this.$toast({
+            title: 'Success',
+            description:
+              'Your account registered success. Verification e-mail sent.',
+            status: 'success',
+            duration: 2000,
+            position: 'top-right',
+          })
+          this.$router.push('/login')
+        }
+      } catch (error) {
+        if (error.response) {
+          this.$toast({
+            title: 'Failed',
+            description: 'Your account registered fail.',
+            status: 'error',
+            duration: 2000,
+            position: 'top-right',
+          })
+        }
+        this.isError = error.response.data
       }
     },
   },

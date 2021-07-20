@@ -97,14 +97,14 @@ export default {
   display: block;
   width: 100%;
   text-align: left;
-  background: transparent;
+  background: #0d0d0d;
   border: none;
   padding: 0.2rem 0.5rem;
+  color: white;
 
   &.is-selected,
   &:hover {
     color: #a975ff;
-    background: rgba(#a975ff, 0.1);
   }
 }
 </style>
