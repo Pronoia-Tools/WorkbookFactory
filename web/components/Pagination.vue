@@ -117,7 +117,7 @@
       </c-flex>
     </c-list>
 
-    <c-flex w="20%" justify="flex-end" align="center">
+    <c-flex v-if="totalPages !== 1" w="20%" justify="flex-end" align="center">
       <c-box pr="2">
         <c-text color="gray.400" font-weight="600">
           {{ textBeforeInput }}

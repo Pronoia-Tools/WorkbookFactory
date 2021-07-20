@@ -22,11 +22,11 @@
         <div class="rounded-md shadow-sm">
           <!-- user name -->
           <div class="mb-6">
-            <label for="user-name" class="sr-only">User Name</label>
+            <label for="user_name" class="sr-only">User Name</label>
             <input
-              id="user-name"
-              v-model="userName"
-              name="user-name"
+              id="user_name"
+              v-model="user_name"
+              name="user_name"
               type="text"
               required
               class="
@@ -48,20 +48,19 @@
                 sm:text-sm
               "
               placeholder="User name"
-              :class="{ 'is-invalid': $v.userName.$error }"
+              :class="{ 'is-invalid': $v.user_name.$error }"
             />
-            <div v-if="$v.userName.$error" class="invalid-feedback">
-              <span v-if="!$v.userName.required">User name is required</span>
-              <span v-if="!$v.userName.userName">User name is invalid</span>
+            <div v-if="$v.user_name.$error" class="invalid-feedback">
+              <span v-if="!$v.user_name.required">User name is required</span>
             </div>
           </div>
           <!-- first name -->
           <div class="mb-6">
-            <label for="first-name" class="sr-only">First Name</label>
+            <label for="first_name" class="sr-only">First Name</label>
             <input
-              id="first-name"
-              v-model="firstName"
-              name="first-name"
+              id="first_name"
+              v-model="first_name"
+              name="first_name"
               type="text"
               required
               class="
@@ -83,19 +82,19 @@
                 sm:text-sm
               "
               placeholder="First name"
-              :class="{ 'is-invalid': $v.firstName.$error }"
+              :class="{ 'is-invalid': $v.first_name.$error }"
             />
-            <div v-if="$v.firstName.$error" class="invalid-feedback">
-              <span v-if="!$v.firstName.required">First name is required</span>
+            <div v-if="$v.first_name.$error" class="invalid-feedback">
+              <span v-if="!$v.first_name.required">First name is required</span>
             </div>
           </div>
           <!-- last name -->
           <div class="mb-6">
-            <label for="last-name" class="sr-only">Last name</label>
+            <label for="last_name" class="sr-only">Last name</label>
             <input
-              id="last-name"
-              v-model="lastName"
-              name="last-name"
+              id="last_name"
+              v-model="last_name"
+              name="last_name"
               type="text"
               required
               class="
@@ -117,10 +116,10 @@
                 sm:text-sm
               "
               placeholder="Last name"
-              :class="{ 'is-invalid': $v.lastName.$error }"
+              :class="{ 'is-invalid': $v.last_name.$error }"
             />
-            <div v-if="$v.lastName.$error" class="invalid-feedback">
-              <span v-if="!$v.lastName.required">lastName is required</span>
+            <div v-if="$v.last_name.$error" class="invalid-feedback">
+              <span v-if="!$v.last_name.required">Last name is required</span>
             </div>
           </div>
           <!-- email -->
@@ -195,6 +194,52 @@
               <span v-if="!$v.password.minLength"
                 >Password must be at least 6 characters</span
               >
+            </div>
+          </div>
+          <!-- confirm password -->
+          <div class="mb-6">
+            <label for="confirm_password" class="sr-only">Password</label>
+            <input
+              id="confirm_password"
+              v-model="confirm_password"
+              name="confirm_password"
+              type="password"
+              autocomplete="current-password"
+              required
+              class="
+                appearance-none
+                rounded-none
+                relative
+                block
+                w-full
+                px-3
+                py-2
+                border border-gray-300
+                placeholder-gray-500
+                text-gray-900
+                rounded-md
+                focus:outline-none
+                focus:ring-indigo-500
+                focus:border-indigo-500
+                focus:z-10
+                sm:text-sm
+              "
+              placeholder="Confirm password"
+              :class="{ 'is-invalid': $v.confirm_password.$error }"
+            />
+            <div v-if="$v.confirm_password.$error" class="invalid-feedback">
+              <span v-if="!$v.confirm_password.required">
+                Confirm password is required
+              </span>
+              <span v-if="!$v.confirm_password.minLength">
+                Password must be at least 6 characters
+              </span>
+            </div>
+            <div
+              v-if="!$v.confirm_password.sameAsPassword"
+              class="invalid-feedback"
+            >
+              <span>Passwords must be identical</span>
             </div>
           </div>
           <!-- checkbox -->
@@ -287,34 +332,39 @@
 </template>
 
 <script>
-// import axios from 'axios'
 import { validationMixin } from 'vuelidate'
-import { required, email, minLength } from 'vuelidate/lib/validators'
+import { required, email, minLength, sameAs } from 'vuelidate/lib/validators'
 
 export default {
   mixins: [validationMixin],
   layout: 'login',
   data() {
     return {
-      userName: '',
-      firstName: '',
-      lastName: '',
+      user_name: '',
+      first_name: '',
+      last_name: '',
       email: '',
       password: '',
+      confirm_password: '',
       isActive: false,
       isStaff: false,
     }
   },
 
   validations: {
-    userName: required,
-    firstName: required,
-    lastName: required,
+    user_name: { required },
+    first_name: { required },
+    last_name: { required },
     email: {
       required,
       email,
     },
-    password: { required, minLength: minLength(6) },
+    password: { required, minLength: minLength(8) },
+    confirm_password: {
+      required,
+      minLength: minLength(8),
+      sameAsPassword: sameAs('password'),
+    },
   },
 
   methods: {
@@ -331,18 +381,36 @@ export default {
       // }
 
       const response = await this.$axios
-        .post('/api/v1/accounts', {
-          username: this.userName,
-          first_name: this.firstName,
-          last_name: this.lastName,
+        .$post('/api/rest-auth/registration/', {
+          username: this.user_name,
+          first_name: this.first_name,
+          last_name: this.last_name,
           email: this.email,
-          password: this.password,
+          password1: this.password,
+          password2: this.confirm_password,
           is_active: this.isActive,
           is_staff: this.isStaff,
         })
-        .catch((error) => console.log(error))
+        .catch((error) => console.log('message', error.response))
 
-      console.log('status code', response)
+      if (response) {
+        this.$toast({
+          title: 'Success',
+          description: 'Your account registered.',
+          status: 'success',
+          duration: 2000,
+          position: 'top-right',
+        })
+        this.$router.go('/login')
+      } else {
+        this.$toast({
+          title: 'Failed',
+          description: 'Please recheck your email or password.',
+          status: 'error',
+          duration: 2000,
+          position: 'top-right',
+        })
+      }
     },
   },
 }
@@ -351,5 +419,7 @@ export default {
 <style scoped>
 .invalid-feedback {
   color: red;
+  font-size: 12px;
+  margin-top: 3px;
 }
 </style>
