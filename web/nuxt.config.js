@@ -21,6 +21,7 @@ export default {
   plugins: [
     { src: '~/plugins/vuex-persist.js', ssr: false },
     { src: '~/plugins/axios.js', ssr: true },
+    { src: '@/plugins/vue-awesome-swiper', mode: 'client' },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

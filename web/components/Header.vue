@@ -1,12 +1,11 @@
 <template>
-  <c-box
-    background-color="#fff"
-    box-shadow="0 1px 3px 0 rgb(0 0 0 / 10%), 0 1px 2px 0 rgb(0 0 0 / 6%)"
-  >
-    <c-flex align="center" h="72px" px="15px">
-      <c-link w="130px" href="">
-        <c-image src="" alt="Image Logo" />
-      </c-link>
+  <c-box box-shadow="0 1px 3px 0 rgb(0 0 0 / 10%), 0 1px 2px 0 rgb(0 0 0 / 6%)">
+    <c-flex align="center" h="5vh" px="15px">
+      <c-box w="40px" h="40px">
+        <nuxt-link to="/">
+          <c-image :src="require('@/static/Sammy.svg')" alt="Image Logo" />
+        </nuxt-link>
+      </c-box>
       <c-box flex="1" as="nav" pl="10">
         <c-box display="flex" as="ul">
           <c-box as="li" px="4">
@@ -19,7 +18,7 @@
             <nuxt-link to=""> Coach's Dashboard</nuxt-link>
           </c-box>
           <c-box as="li" px="4">
-            <nuxt-link to=""> Marketplace</nuxt-link>
+            <nuxt-link to="/marketplace"> Marketplace</nuxt-link>
           </c-box>
         </c-box>
       </c-box>
