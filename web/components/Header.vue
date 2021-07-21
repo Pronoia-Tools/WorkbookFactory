@@ -48,10 +48,8 @@
               </c-menu-button>
               <c-menu-list>
                 <c-menu-divider />
-                <c-menu-item>
-                  <c-box cursor="pointer" @click="logout()">
-                    <span>Logout</span>
-                  </c-box>
+                <c-menu-item cursor="pointer" @click="logout()">
+                  <span>Logout</span>
                 </c-menu-item>
               </c-menu-list>
             </c-menu>

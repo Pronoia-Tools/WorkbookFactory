@@ -6,7 +6,10 @@
       </side-bar>
     </c-box>
     <c-box w="80%" px="10" py="10">
-      <editor v-model="content" class="h-full overflow-y-auto" />
+      <editor
+        v-model="content"
+        class="h-full overflow-y-auto focus:outline-none"
+      />
     </c-box>
   </c-flex>
 </template>

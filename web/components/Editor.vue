@@ -1,6 +1,6 @@
 <template>
-  <div v-if="editor">
-    <bubble-menu v-if="editor" :editor="editor">
+  <div v-if="editor" class="ProseMirror border border-gray-200">
+    <bubble-menu v-if="editor" class="bubble-menu" :editor="editor">
       <button
         :class="{ 'is-active': editor.isActive('bold') }"
         @click="editor.chain().focus().toggleBold().run()"
@@ -186,6 +186,9 @@ export default {
     margin-top: 0.75em;
   }
 }
+.ProseMirror:focus-visible {
+  outline: none;
+}
 
 h1 {
   display: block;
@@ -196,6 +199,27 @@ h1 {
 h2 {
   display: block;
   font-size: 1.5em;
-  font-weight: bold;
+  font-weight: semi-bold;
+}
+
+.bubble-menu {
+  display: flex;
+  background-color: #0d0d0d;
+  padding: 0.4rem;
+  border-radius: 0.5rem;
+
+  button {
+    border: none;
+    background: none;
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 0 0.4rem;
+
+    &:hover,
+    &.is-active {
+      color: #a975ff;
+    }
+  }
 }
 </style>
