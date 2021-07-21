@@ -382,9 +382,6 @@ export default {
       sameAsPassword: sameAs('password'),
     },
   },
-  created() {
-    return this.$v.$touch()
-  },
   methods: {
     async registerUser() {
       // stop here if form is invalid
